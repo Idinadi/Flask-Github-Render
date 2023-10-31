@@ -19,6 +19,7 @@ print(labels)
 def predict():
     data = request.get_json(force=True)
     predict = model.predict(data['feature'])
+    print(labels[predict[0].tolist()])
     return jsonify(labels[predict[0].tolist()])
 
 if __name__ == '__main__':
