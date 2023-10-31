@@ -11,9 +11,7 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -34,8 +32,13 @@ jobs:
     - name: Test with pytest
       run: |
         pytest test.py
-    - name: Deploy to production
-      uses: johnbeynon/render-deploy-action@v0.0.8
-      with:
+  Deploy:
+    name: Deploy
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production    
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
           service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
           api-key: ${{ secrets.MY_RENDER_API_KEY }}
