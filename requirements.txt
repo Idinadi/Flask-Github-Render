@@ -3,3 +3,4 @@ flask_restful
 scikit-learn
 pandas
 numpy
+pytest
